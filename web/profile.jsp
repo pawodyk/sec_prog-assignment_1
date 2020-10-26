@@ -65,7 +65,7 @@
                         }
                         
                         catch(Exception e){
-                            response.sendRedirect("profile.jsp"); }
+                            response.sendRedirect("Error.jsp"); }
                         }
                     } else {
                         out.print("Please login to see Your Profile");
