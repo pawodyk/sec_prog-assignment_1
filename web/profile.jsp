@@ -40,7 +40,7 @@
                         Connection con = new DBConnect().connect(getServletContext().getRealPath("/WEB-INF/config.properties"));
 
                         String id = request.getParameter("id");
-                        if (id != null && !id.equals("")) {
+                        if (id != null && !id.equals("")&& id.equals(session.getAttribute("userid")) {
                         try{
                             Statement stmt = con.createStatement();
                             ResultSet rs = null;
