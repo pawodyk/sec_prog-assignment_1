@@ -6,6 +6,7 @@
 package validate;
 
 import dbconnection.DBConnect;
+import java.sql.PreparedStatement;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
@@ -40,8 +41,10 @@ public class ValidateLogin extends HttpServlet {
                     if(con!=null && !con.isClosed())
                                {
                                    ResultSet rs=null;
-                                   Statement stmt = con.createStatement();  
-                                   rs=stmt.executeQuery("select * from users where username='"+user+"' and password='"+pass+"'");
+                                   PreparedStatement pst = con.prepareStatement("select * from users where username=? and password=?");
+                                   pst.setString(1,user);
+                                   pst.setString(1,pass);
+                                   rs=pst.executeQuery();
                                    if(rs != null && rs.next()){
                                         HttpSession session=request.getSession();
                                         session.setAttribute("userid", rs.getString("id"));
