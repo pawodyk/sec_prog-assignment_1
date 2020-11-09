@@ -25,10 +25,10 @@
 
             <div id="content">
 
-                <h1>Sorry! An Error Occurred, Please Try Again</h1>
+                <h1>Sorry the page could not be found.</h1>
                 <br>
 
-                <div id="footer"><h3><a href="http://www.trump.com/">Trump Web Design</a></h3></div>
+                    <div id="footer"><h3><a href="http://www.trump.com/">Trump Web Design</a></h3></div>
             </div>
         </div>
     </body>
