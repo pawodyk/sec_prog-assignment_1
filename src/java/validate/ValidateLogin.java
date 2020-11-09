@@ -8,12 +8,12 @@ package validate;
 import dbconnection.DBConnect;
 import java.sql.PreparedStatement;
 import java.io.IOException;
-import java.io.PrintWriter;
+//import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Statement;
+//import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -31,40 +31,35 @@ public class ValidateLogin extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String user=request.getParameter("username").trim();
-        String pass=request.getParameter("password").trim();
-        
-        try
-             {
-                 Connection con=new DBConnect().connect(getServletContext().getRealPath("/WEB-INF/config.properties"));
-                    if(con!=null && !con.isClosed())
-                               {
-                                   ResultSet rs=null;
-                                   PreparedStatement pst = con.prepareStatement("select * from users where username=? and password=?");
-                                   pst.setString(1,user);
-                                   pst.setString(1,pass);
-                                   rs=pst.executeQuery();
-                                   if(rs != null && rs.next()){
-                                        HttpSession session=request.getSession();
-                                        session.setAttribute("userid", rs.getString("id"));
-                                        session.setAttribute("user", rs.getString("username"));
-                                        session.setAttribute("isLoggedIn", "1");
-                                        Cookie privilege=new Cookie("privilege", getMD5(user));
-                                        response.addCookie(privilege);
-                                        response.sendRedirect("members.jsp");
-                                   }
-                                    
-                               }
+
+        String user = request.getParameter("username").trim();
+        String pass = request.getParameter("password").trim();
+
+        try {
+            Connection con = new DBConnect().connect(getServletContext().getRealPath("/WEB-INF/config.properties"));
+            if (con != null && !con.isClosed()) {
+                ResultSet rs = null;
+                PreparedStatement pst = con.prepareStatement("select * from users where username=? and password=?");
+                pst.setString(1, user);
+                pst.setString(2, pass);
+                rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("userid", rs.getString("id"));
+                    session.setAttribute("user", rs.getString("username"));
+                    session.setAttribute("isLoggedIn", "1");
+                    Cookie privilege = new Cookie("privilege", getMD5(user));
+                    response.addCookie(privilege);
+                    response.sendRedirect("members.jsp");
                 }
-               catch(Exception ex)
-                {
-                           response.sendRedirect("login.jsp");
-                 }
-        
-        
+
+            }
+        } catch (Exception ex) {
+            response.sendRedirect("login.jsp");
+        }
+
     }
-    
+
     private String getMD5(String user) {
 
         MessageDigest mdAlgorithm = null;
@@ -88,9 +83,8 @@ public class ValidateLogin extends HttpServlet {
             hexString.append(user);
         }
 
-return hexString.toString();
+        return hexString.toString();
 
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

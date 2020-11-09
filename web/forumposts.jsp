@@ -28,7 +28,9 @@
                     <li class="menuitem"><a href="index.jsp">Home</a></li>
                     <li class="menuitem"><a href="quotes.jsp">Quotes</a></li>
                     <li class="menuitem"><a href="news.jsp">News</a></li>
-                    <li class="menuitem"><a href="profile.jsp?id=<% if (session.getAttribute("userid") != null) {out.print(session.getAttribute("userid"));} %>">Profile</a></li>
+                    <li class="menuitem"><a href="profile.jsp?id=<% if (session.getAttribute("userid") != null) {
+                            out.print(session.getAttribute("userid"));
+                        } %>">Profile</a></li>
                     <li class="menuitem"><a href="forum.jsp">Members Forum</a></li>
                     <li class="menuitem"><a href="ValidateLogout">Logout</a></li>
                 </ul>

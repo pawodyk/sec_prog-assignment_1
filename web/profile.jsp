@@ -25,7 +25,9 @@
                     <li class="menuitem"><a href="index.jsp">Home</a></li>
                     <li class="menuitem"><a href="quotes.jsp">Quotes</a></li>
                     <li class="menuitem"><a href="news.jsp">News</a></li>
-                    <li class="menuitem"><a href="profile.jsp?id=<% if(session.getAttribute("userid")!=null){ out.print(session.getAttribute("userid"));} %>">Profile</a></li>
+                    <li class="menuitem"><a href="profile.jsp?id=<% if (session.getAttribute("userid") != null) {
+                            out.print(session.getAttribute("userid"));
+                        }%>">Profile</a></li>
                     <li class="menuitem"><a href="forum.jsp">Members Forum</a></li>
                     <li class="menuitem"><a href="ValidateLogout">Logout</a></li>
                 </ul>
@@ -40,33 +42,34 @@
                         Connection con = new DBConnect().connect(getServletContext().getRealPath("/WEB-INF/config.properties"));
 
                         String id = request.getParameter("id");
-                        if (id != null && !id.equals("")&& id.equals(session.getAttribute("userid")) {
-                        try{
-                            Statement stmt = con.createStatement();
-                            ResultSet rs = null;
-                            rs = stmt.executeQuery("select * from users where id=" + id);
-                            if (rs != null && rs.next()) {
-                                out.print("UserName : " + rs.getString("username") + "<br>");
-                                out.print("Email : " + rs.getString("email") + "<br>");
-                                out.print("About : " + rs.getString("about") + "<br>");
+                        if (id != null && !id.equals("") && id.equals(session.getAttribute("userid"))) {
+                            try {
+                                Statement stmt = con.createStatement();
+                                ResultSet rs = null;
+                                rs = stmt.executeQuery("select * from users where id=" + id);
+                                if (rs != null && rs.next()) {
+                                    out.print("UserName : " + rs.getString("username") + "<br>");
+                                    out.print("Email : " + rs.getString("email") + "<br>");
+                                    out.print("About : " + rs.getString("about") + "<br>");
 
-                                //Getting Card Details:
-                                ResultSet rs1 = stmt.executeQuery("select * from carddetail where id=" + id);
-                                if (rs1 != null && rs1.next()) {
-                                    out.print("<br/>-------------------<br/>Card Details:<br/>-------------------<br/>");
-                                    out.print("Card Number: " + rs1.getString("cardno") + "<br/>");
-                                    out.print("CVV: " + rs1.getString("cvv") + "<br/>");
-                                    out.print("Expiry Date: " + rs1.getString("expiry") + "<br/>");
+                                    //Getting Card Details:
+                                    ResultSet rs1 = stmt.executeQuery("select * from carddetail where id=" + id);
+                                    if (rs1 != null && rs1.next()) {
+                                        out.print("<br/>-------------------<br/>Card Details:<br/>-------------------<br/>");
+                                        out.print("Card Number: " + rs1.getString("cardno") + "<br/>");
+                                        out.print("CVV: " + rs1.getString("cvv") + "<br/>");
+                                        out.print("Expiry Date: " + rs1.getString("expiry") + "<br/>");
+                                    }
+
                                 }
 
+                            } catch (Exception e) {
+                                response.sendRedirect("Error.jsp");
                             }
                         } else {
                             out.print("ID Parameter is Missing");
                         }
-                        
-                        catch(Exception e){
-                            response.sendRedirect("Error.jsp"); }
-                        }
+
                     } else {
                         out.print("Please login to see Your Profile");
                     }

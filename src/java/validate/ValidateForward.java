@@ -5,7 +5,6 @@
  */
 package validate;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -13,7 +12,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 public class ValidateForward extends HttpServlet {
 
@@ -31,15 +29,12 @@ public class ValidateForward extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-           if(request.getParameter("location")!=null)
-            {
-                String location=request.getParameter("location");
+            if (request.getParameter("location") != null) {
+                String location = request.getParameter("location");
                 //Forwarding
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(location);
-                dispatcher.forward(request,response);
-            }
-            else
-            {
+                dispatcher.forward(request, response);
+            } else {
                 out.print("Location Parameter is missing");
             }
         } finally {

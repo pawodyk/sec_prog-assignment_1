@@ -24,11 +24,11 @@
             </div>
 
             <div id="content">
-                
-                   <h1>Sorry, some error accrued</h1>
-                   <br>
 
-                <div id="footer"><h3><a href="http://www.trump.com/">Trump Web Design</a></h3></div>
+                <h1>Sorry, some error accrued</h1>
+                <br>
+
+                    <div id="footer"><h3><a href="http://www.trump.com/">Trump Web Design</a></h3></div>
             </div>
         </div>
     </body>
