@@ -38,7 +38,7 @@ public class ValidateLogout extends HttpServlet {
             session.invalidate();
             response.sendRedirect("index.jsp");
         } catch (Exception e) {
-
+            response.sendRedirect("Error.jsp");
         }
     }
 

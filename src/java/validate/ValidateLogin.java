@@ -35,27 +35,32 @@ public class ValidateLogin extends HttpServlet {
         String user = request.getParameter("username").trim();
         String pass = request.getParameter("password").trim();
 
-        try {
-            Connection con = new DBConnect().connect(getServletContext().getRealPath("/WEB-INF/config.properties"));
-            if (con != null && !con.isClosed()) {
-                ResultSet rs = null;
-                PreparedStatement pst = con.prepareStatement("select * from users where username=? and password=?");
-                pst.setString(1, user);
-                pst.setString(2, pass);
-                rs = pst.executeQuery();
-                if (rs != null && rs.next()) {
-                    HttpSession session = request.getSession();
-                    session.setAttribute("userid", rs.getString("id"));
-                    session.setAttribute("user", rs.getString("username"));
-                    session.setAttribute("isLoggedIn", "1");
-                    Cookie privilege = new Cookie("privilege", getMD5(user));
-                    response.addCookie(privilege);
-                    response.sendRedirect("members.jsp");
-                }
-
-            }
-        } catch (Exception ex) {
+        if (user.isEmpty() || pass.isEmpty()) {
             response.sendRedirect("login.jsp");
+        } else {
+            try {
+                Connection con = new DBConnect().connect(getServletContext().getRealPath("/WEB-INF/config.properties"));
+                if (con != null && !con.isClosed()) {
+                    ResultSet rs = null;
+                    PreparedStatement pst = con.prepareStatement("select * from users where username=? and password=?");
+                    pst.setString(1, user);
+                    pst.setString(2, pass);
+                    rs = pst.executeQuery();
+                    if (rs != null && rs.next()) {
+                        HttpSession session = request.getSession();
+                        session.setAttribute("userid", rs.getString("id"));
+                        session.setAttribute("user", rs.getString("username"));
+                        session.setAttribute("isLoggedIn", "1");
+                        Cookie privilege = new Cookie("privilege", getMD5(user));
+                        response.addCookie(privilege);
+                        response.sendRedirect("members.jsp");
+                    } else {
+                        response.sendRedirect("loginError.jsp");
+                    }
+                }
+            } catch (Exception ex) {
+                response.sendRedirect("Error.jsp");
+            }
         }
 
     }
