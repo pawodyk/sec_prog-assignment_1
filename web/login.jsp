@@ -1,6 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <%
+    /*
+    // I dont know why this code is here??
+    // it grabs a cookie and extracts the name and pass from it 
+    // but this data should go from input
+    // I've commented it out and the user is logged in as normal no problem.
     String username = "";
     String password = "";
     Cookie[] cookies = request.getCookies();
@@ -13,6 +18,7 @@
             }
         }
     }
+    */
 %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -39,9 +45,9 @@
 
             <div id="content">
                 <form action="ValidateLogin" method="post">
-                    <table> 
-                        <tr><td>UserName: </td><td><input type="text" name="username" value="<%=username%>" /></td></tr>
-                        <tr><td>Password :</td><td><input type="password" name="password" value="<%=password%>"/></td></tr>
+                    <table>
+                        <tr><td><label for="username">Username: </label></td><td><input type="text" name="username" required/></td></tr>
+                        <tr><td><label for="password">Password :</label></td><td><input type="password" name="password" required/></td></tr>
                         <tr><td><input type="submit" name="Login" value="Login"/></td></tr>
                     </table>  
                 </form>
