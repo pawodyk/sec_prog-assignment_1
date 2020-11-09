@@ -34,13 +34,11 @@ public class ValidateLogout extends HttpServlet {
         try {
             PrintWriter out = response.getWriter();
             /* TODO output your page here. You may use following sample code. */
-          HttpSession session=request.getSession();  
-            session.invalidate();  
+            HttpSession session = request.getSession();
+            session.invalidate();
             response.sendRedirect("index.jsp");
-        }
-        catch(Exception e)
-        {
-            
+        } catch (Exception e) {
+
         }
     }
 
