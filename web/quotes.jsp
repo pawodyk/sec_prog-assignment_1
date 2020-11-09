@@ -14,10 +14,10 @@
             <div id="menu">
                 <ul>
                     <li class="menuitem"><a href="index.jsp">Home</a></li>
-                <li class="menuitem"><a href="quotes.jsp">Quotes</a></li>
-                <li class="menuitem"><a href="news.jsp">News</a></li>
-                <li class="menuitem"><a href="login.jsp">Login</a></li>
-                <li class="menuitem"><a href="sitemap.jsp">Site Map</a></li>
+                    <li class="menuitem"><a href="quotes.jsp">Quotes</a></li>
+                    <li class="menuitem"><a href="news.jsp">News</a></li>
+                    <li class="menuitem"><a href="login.jsp">Login</a></li>
+                    <li class="menuitem"><a href="sitemap.jsp">Site Map</a></li>
                 </ul>
             </div>
 

@@ -13,25 +13,21 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DBConnect {
-    
-    public Connection connect(String path) throws IOException,ClassNotFoundException,SQLException
-    {
-        Properties properties=new Properties();
+
+    public Connection connect(String path) throws IOException, ClassNotFoundException, SQLException {
+        Properties properties = new Properties();
         properties.load(new FileInputStream(path));
-        String dbuser=properties.getProperty("dbuser");
+        String dbuser = properties.getProperty("dbuser");
         String dbpass = properties.getProperty("dbpass");
-        String dbfullurl = properties.getProperty("dburl")+properties.getProperty("dbname");
+        String dbfullurl = properties.getProperty("dburl") + properties.getProperty("dbname");
         String jdbcdriver = properties.getProperty("jdbcdriver");
-        Connection con=null;
-          try
-                   {
-                    Class.forName(jdbcdriver);
-                    con= DriverManager.getConnection(dbfullurl,dbuser,dbpass);
-                    return con;
-                   }
-                   finally
-                    {
-                                 
-                    }      
+        Connection con = null;
+        try {
+            Class.forName(jdbcdriver);
+            con = DriverManager.getConnection(dbfullurl, dbuser, dbpass);
+            return con;
+        } finally {
+
+        }
     }
 }

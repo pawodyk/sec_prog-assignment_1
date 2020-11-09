@@ -25,7 +25,9 @@
                     <li class="menuitem"><a href="index.jsp">Home</a></li>
                     <li class="menuitem"><a href="quotes.jsp">Quotes</a></li>
                     <li class="menuitem"><a href="news.jsp">News</a></li>
-                    <li class="menuitem"><a href="profile.jsp?id=<% if(session.getAttribute("userid")!=null){ out.print(session.getAttribute("userid"));} %>">Profile</a></li>
+                    <li class="menuitem"><a href="profile.jsp?id=<% if (session.getAttribute("userid") != null) {
+                            out.print(session.getAttribute("userid"));
+                        } %>">Profile</a></li>
                     <li class="menuitem"><a href="forum.jsp">Members Forum</a></li>
                     <li class="menuitem"><a href="ValidateLogout">Logout</a></li>
                 </ul>
@@ -37,10 +39,10 @@
                     Title : <input type="text" name="title" value="" size="50"/><br/>
                     Message: <br/><textarea name="content" rows="2" cols="50"></textarea>
                     <input type="hidden" name="user" value="<% if (session.getAttribute("user") != null) {
-               out.print(session.getAttribute("user"));
-           } else {
-               out.print("Anonymous");
-           } %>"/><br/>
+                            out.print(session.getAttribute("user"));
+                        } else {
+                            out.print("Anonymous");
+                        } %>"/><br/>
                     <input type="submit" value="Post" name="post"/>
                 </form>
 
