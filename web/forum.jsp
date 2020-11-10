@@ -54,7 +54,8 @@
                         String title = request.getParameter("title");
 
                 %>
-                <%        if (con != null && !con.isClosed()) {
+                <%        
+                        if (con != null && !con.isClosed()) {
                             Statement stmt = con.createStatement();
                             stmt.executeUpdate("INSERT into posts(content,title,user) values ('" + content + "','" + title + "','" + user + "')");
                             out.print("Successfully posted");
@@ -66,7 +67,8 @@
                 <p>&nbsp;</p>
                 <p>&nbsp;</p>
                 <h3>List of Posts:</h3> 
-                <%        if (con != null && !con.isClosed()) {
+                <%        
+                    if (con != null && !con.isClosed()) {
                         Statement stmt = con.createStatement();
                         ResultSet rs = null;
                         rs = stmt.executeQuery("select * from posts");

@@ -25,7 +25,9 @@
 
             <div id="content">
 
-                <h1>Sorry! An Error Occurred, Please Try Again</h1>
+                <h1>Login Error!</h1>
+                <p>Incorrect login or password</p>
+                <p><a href="login.jsp"  type="button" >TRY AGAIN</a></p>
                 <br>
 
                 <div id="footer"><h3><a href="http://www.trump.com/">Trump Web Design</a></h3></div>

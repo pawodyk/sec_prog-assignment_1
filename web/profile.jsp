@@ -67,11 +67,13 @@
                                 response.sendRedirect("Error.jsp");
                             }
                         } else {
-                            out.print("ID Parameter is Missing");
+                            //out.print("ID Parameter is Missing");
+                            response.sendRedirect("profile.jsp?id=" + session.getAttribute("userid")); // redirects user back to his page
                         }
 
                     } else {
-                        out.print("Please login to see Your Profile");
+                        //out.print("Please login to see Your Profile");
+                        response.sendRedirect("login.jsp"); // no access to profile area, sent back to the login page
                     }
 
                 %>

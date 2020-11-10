@@ -31,12 +31,32 @@ public class ValidateForward extends HttpServlet {
         try {
             if (request.getParameter("location") != null) {
                 String location = request.getParameter("location");
-                //Forwarding
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(location);
-                dispatcher.forward(request, response);
+
+                //TODO Better solution foreach loop the array.
+                switch (location) {
+                    case "/index.jsp":
+                    case "/quotes.jsp":
+                    case "/news.jsp":
+                    case "/login.jsp":
+                        //Forwarding
+                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(location);
+                        dispatcher.forward(request, response);
+                        break;
+                    default:
+                        //TODO cannot redirect outside the website
+                        response.sendRedirect("Error.jsp");
+                }
+
+//                //Forwarding
+//                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(location);
+//                dispatcher.forward(request, response);
             } else {
-                out.print("Location Parameter is missing");
+                //TODO Error no location parameter
+                //out.print("Location Parameter is missing");
+                response.sendRedirect("Error.jsp");
             }
+        } catch (Exception ex) {
+            response.sendRedirect("Error.jsp");
         } finally {
             out.close();
         }
