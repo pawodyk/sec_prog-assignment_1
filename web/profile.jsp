@@ -56,8 +56,9 @@
                                     ResultSet rs1 = stmt.executeQuery("select * from carddetail where id=" + id);
                                     if (rs1 != null && rs1.next()) {
                                         out.print("<br/>-------------------<br/>Card Details:<br/>-------------------<br/>");
-                                        out.print("Card Number: " + rs1.getString("cardno") + "<br/>");
-                                        out.print("CVV: " + rs1.getString("cvv") + "<br/>");
+                                        String cardNo = rs1.getString("cardno");
+                                        out.print("Card Number: xxx - " + cardNo.substring(cardNo.length()-4, cardNo.length()) + "<br/>");
+                                        //out.print("CVV: " + rs1.getString("cvv") + "<br/>");
                                         out.print("Expiry Date: " + rs1.getString("expiry") + "<br/>");
                                     }
 
@@ -66,10 +67,12 @@
                             } catch (Exception e) {
                                 response.sendRedirect("Error.jsp");
                             }
-                        } else {
-                            //out.print("ID Parameter is Missing");
-                            response.sendRedirect("profile.jsp?id=" + session.getAttribute("userid")); // redirects user back to his page
-                        }
+                            con.close();
+                        } 
+//                        else {
+//                            //out.print("ID Parameter is Missing");
+//                            response.sendRedirect("profile.jsp?id=" + session.getAttribute("userid")); // redirects user back to his page
+//                        }
 
                     } else {
                         //out.print("Please login to see Your Profile");
