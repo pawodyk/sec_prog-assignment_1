@@ -30,9 +30,7 @@
         <error-code>404</error-code>
         <location>/404.jsp</location>
     </error-page>
-<<<<<<< Updated upstream
-=======
-     
+
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>
@@ -46,6 +44,5 @@
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
->>>>>>> Stashed changes
-
+  
 </web-app>
