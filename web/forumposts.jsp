@@ -8,6 +8,7 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="dbconnection.DBConnect"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="java.sql.SQLException"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -38,20 +39,28 @@
 
             <div id="content">
                 <%
-                    Connection con = new DBConnect().connect(getServletContext().getRealPath("/WEB-INF/config.properties"));
+                    try {
+                        Connection con = new DBConnect().connect(getServletContext().getRealPath("/WEB-INF/config.properties"));
 
-                    String postid = request.getParameter("postid");
-                    if (postid != null) {
-                        Statement stmt = con.createStatement();
-                        ResultSet rs = null;
-                        rs = stmt.executeQuery("select * from posts where id=" + postid);
-                        if (rs != null && rs.next()) {
-                            out.print("<b style='font-size:22px'>Title:" + rs.getString("title") + "</b>");
-                            out.print("<br/>-  Posted By " + rs.getString("user"));
-                            out.print("<br/><br/>Content:<br/><c:out value=" + rs.getString("content"));
+                        String postid = request.getParameter("postid");
+                        if (postid != null) {
+                            Statement stmt = con.createStatement();
+                            ResultSet rs = null;
+                            rs = stmt.executeQuery("select * from posts where id=" + postid);
+                            if (rs != null && rs.next()) {
+                                out.print("<b style='font-size:22px'>Title:" + rs.getString("title") + "</b>");
+                                out.print("<br/>-  Posted By " + rs.getString("user"));
+                                String postContent = rs.getString("content");
+                                out.print("<br/><br/>Content:<br/>" + postContent.replaceAll("<", "&lt;").replaceAll(">", "&gt;"));
+
+                            }
+                        } else {
+                            out.print("ID Parameter is Missing");
                         }
-                    } else {
-                        out.print("ID Parameter is Missing");
+                    } catch (SQLException ex) {
+                        // loges the message in the server console and redirects user to Error Page
+                        System.out.println("An error occured in the forumpost.jsp" + ex.toString()); 
+                        response.sendRedirect("Error.jsp");
                     }
 
                     out.print("<br/><br/><a href='forum.jsp'>Return to Forum &gt;&gt;</a>");
