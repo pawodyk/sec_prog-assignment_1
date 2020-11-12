@@ -27,18 +27,22 @@
     </servlet-mapping>
     
     <error-page>
-       <error-code>404</error-code>
-       <location>/404.jsp</location>
+        <error-code>404</error-code>
+        <location>/404.jsp</location>
     </error-page>
-    
-    <security-constraint>
-      <web-resource-collection>
-        <web-resource-name>Viewpoint Secure URLs</web-resource-name>
-        <url-pattern>/*</url-pattern>
-      </web-resource-collection>
-      <user-data-constraint>
-        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-      </user-data-constraint>
-    </security-constraint>
 
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                SecureConnection
+            </web-resource-name>
+            <url-pattern>/*</url-pattern>
+            <http-method>POST</http-method>
+            <http-method>GET</http-method>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+  
 </web-app>

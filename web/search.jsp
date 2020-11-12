@@ -33,9 +33,10 @@
                         <label>Please Enter Keyword:
                             <input  type="text" name="keyword"/>
                         </label>
-                        <br>
+                        <br/>
                             <input type="submit" name="action" value="Search"/>
                     </form>
+                    
                     <br/>
                     <%
                         String searchedName = request.getParameter("keyword");

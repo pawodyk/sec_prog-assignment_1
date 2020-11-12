@@ -50,9 +50,9 @@ public class ValidateLogin extends HttpServlet {
                         HttpSession session = request.getSession();
                         session.setAttribute("userid", rs.getString("id"));
                         session.setAttribute("user", rs.getString("username"));
-                        session.setAttribute("isLoggedIn", "1");
-                        Cookie privilege = new Cookie("privilege", getMD5(user));
-                        response.addCookie(privilege);
+                        session.setAttribute("isLoggedIn", "1"); // change "1" to getMD5(user) (?)
+                        //Cookie privilege = new Cookie("privilege", getMD5(user));
+                        //response.addCookie(privilege);
                         response.sendRedirect("members.jsp");
                     } else {
                         response.sendRedirect("loginError.jsp");
