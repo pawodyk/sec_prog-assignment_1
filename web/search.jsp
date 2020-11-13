@@ -1,4 +1,5 @@
 <% response.addHeader("X-Frame-Options", "DENY"); %>
+<% response.addHeader("X-XSS-Protection", "1"); %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"prefix="c"%> 
 
