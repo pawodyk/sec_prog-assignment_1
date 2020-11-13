@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Cookie;
 
 /**
  *
@@ -36,8 +37,10 @@ public class ValidateLogout extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
             session.invalidate();
+            //response.addCookie(new Cookie("privilege", "")); // overwrite a cookie
             response.sendRedirect("index.jsp");
         } catch (Exception e) {
+            System.out.println("Error occured in Validate Logout page" + e.toString());
             response.sendRedirect("Error.jsp");
         }
     }

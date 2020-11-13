@@ -59,6 +59,7 @@ public class ValidateLogin extends HttpServlet {
                     }
                 }
             } catch (Exception ex) {
+                System.out.println("exception in ValidateLogin class \n" + ex.toString());
                 response.sendRedirect("Error.jsp");
             }
         }

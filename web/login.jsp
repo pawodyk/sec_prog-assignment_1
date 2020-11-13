@@ -1,11 +1,10 @@
+<% response.addHeader("X-Frame-Options", "DENY"); %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <%
     /*
-    // I dont know why this code is here??
-    // it grabs a cookie and extracts the name and pass from it 
-    // but this data should go from input
-    // I've commented it out and the user is logged in as normal no problem.
+    // This code take the data from cookie and assign its value to the input field
     String username = "";
     String password = "";
     Cookie[] cookies = request.getCookies();
